@@ -10,9 +10,9 @@ import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 
 public class Main1 extends JFrame {
-	// http://forum.codecall.net/topic/45693-game-a-simple-pong/
+	
 	private static final long serialVersionUID = 1L;
-	// screen size variables.
+	
 	int gWidth = 500;
 	int gHeight = 400;
 	Dimension screenSize = new Dimension(gWidth, gHeight);
@@ -23,10 +23,8 @@ public class Main1 extends JFrame {
 	static boolean jogo = true;
 	boolean gameOver;
 
-	// ball object
 	static Ball b = new Ball(250, 200);
 
-	// constructor for window
 	public Main1() {
 		this.setTitle("Pong!");
 		this.setSize(screenSize);
@@ -40,7 +38,6 @@ public class Main1 extends JFrame {
 	public static void main(String[] args) {
 		Main1 pg = new Main1();
 
-		// create and start threads.
 		Thread ball = new Thread(b);
 		ball.start();
 		Thread p1 = new Thread(b.p1);
