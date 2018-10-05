@@ -1,4 +1,4 @@
-package myPong;
+package pong;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -9,10 +9,9 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
 
-public class Main1 extends JFrame {
-	
+public class Game extends JFrame{
 	private static final long serialVersionUID = 1L;
-	
+
 	int gWidth = 500;
 	int gHeight = 400;
 	Dimension screenSize = new Dimension(gWidth, gHeight);
@@ -23,9 +22,9 @@ public class Main1 extends JFrame {
 	static boolean jogo = true;
 	boolean gameOver;
 
-	static Ball b = new Ball(250, 200);
+	static Bola b = new Bola(250, 200);
 
-	public Main1() {
+	public Game() {
 		this.setTitle("Pong!");
 		this.setSize(screenSize);
 		this.setResizable(false);
@@ -36,10 +35,10 @@ public class Main1 extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		Main1 pg = new Main1();
 
-		Thread ball = new Thread(b);
-		ball.start();
+		Game pg = new Game();
+		Thread bola = new Thread(b);
+		bola.start();
 		Thread p1 = new Thread(b.p1);
 		Thread p2 = new Thread(b.p2);
 		p2.start();
@@ -65,11 +64,10 @@ public class Main1 extends JFrame {
 
 	private void getScore(Graphics g) {
 		g.setColor(Color.WHITE);
-		g.drawString("Jogador 1 " + b.p1score, 40, 40);
-		
-		g.drawString("Jogador 2 " + b.p2score, 385, 40);
+		g.drawString("Jogador 1 " + b.p1ponto, 40, 40);
+		g.drawString("Jogador 2 " + b.p2ponto, 385, 40);
 		g.setColor(Color.WHITE);
-		if (b.p1score >= 6 || b.p2score >= 6) {
+		if (b.p1ponto >= 6 || b.p2ponto >= 6) {
 			setJogo(false);
 			gameOver = true;
 		}
@@ -102,7 +100,6 @@ public class Main1 extends JFrame {
 	}
 
 	public static void setJogo(boolean jogo) {
-		Main1.jogo = jogo;
+		Game.jogo = jogo;
 	}
-
 }
